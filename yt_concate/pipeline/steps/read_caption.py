@@ -5,10 +5,11 @@ from .step import Step
 
 class ReadCaption(Step):
     def process(self, data, inputs, utils):
-        data = {}
-        for caption_file in os.listdir(CAPTIONS_DIR):
+        for yt in data:
+            if not utils.caption_file_exists(yt):
+                continue
             captions = {}
-            with open(os.path.join(CAPTIONS_DIR, caption_file), 'r', encoding="utf-8") as f:
+            with open(yt.caption_filepath, 'r', encoding="utf-8") as f:
                 time_line = False
                 time = None
                 line = None
@@ -21,7 +22,6 @@ class ReadCaption(Step):
                         caption = line.strip()
                         captions[caption] = time
                         time_line = False
-            data[caption_file] = captions
+            yt.captions = captions
 
-        pprint(data)
         return data

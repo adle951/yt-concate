@@ -3,7 +3,7 @@ from abc import abstractmethod
 
 
 class Step(ABC):
-    def __int__(self):
+    def __init__(self):
         pass
 
     @abstractmethod
