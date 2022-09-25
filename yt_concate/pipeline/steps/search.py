@@ -15,3 +15,4 @@ class Search(Step):
                     f = Found(yt, caption, time)
                     founds.append(f)
         print(len(founds))
+        return founds
