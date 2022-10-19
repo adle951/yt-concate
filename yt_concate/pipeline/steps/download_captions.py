@@ -18,7 +18,7 @@ class DownloadCaptions(Step):
             except AttributeError:
                 print('AttributeError when downloading caption for', yt.url)
                 continue
-            text_file = open(utils.get_caption_filepath(yt.url), "w", encoding='utf-8')
+            text_file = open(yt.caption_filepath, "w", encoding='utf-8')
             text_file.write(en_caption_convert_to_srt)
             text_file.close()
         end_time = time.time()

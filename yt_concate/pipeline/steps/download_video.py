@@ -13,5 +13,10 @@ class DownloadVideo(Step):
                 print(f'video {url} existing')
                 continue
             print('downloading', yt.url)
-            YouTube(url).streams.first().download(output_path=VIDEOS_DIR, filename=yt.id + '.mp4')
+            try:
+                YouTube(url).streams.first().download(output_path=VIDEOS_DIR, filename=yt.id + '.mp4')
+            except ConnectionError:
+                print('download_video connectionerror')
+                continue
+
         return data
